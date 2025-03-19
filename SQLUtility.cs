@@ -15,6 +15,7 @@ namespace CPUFramework
             {
                cmd = new SqlCommand(sprocname, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                Debug.Print(cmd.ToString());
 
                 conn.Open();
                 SqlCommandBuilder.DeriveParameters(cmd);
@@ -85,4 +86,4 @@ namespace CPUFramework
 
     }
 }
-//
+ 
