@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace CPUFramework
 {
-    public class SQLUtility
+     public class SQLUtility
     {
         public static string ConnectionString = "";
 
