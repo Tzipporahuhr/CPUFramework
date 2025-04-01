@@ -6,7 +6,7 @@ namespace CPUFramework
 {
      public class SQLUtility
     {
-        public static string ConnectionString = "";
+         public static string ConnectionString = "";
 
         public static SqlCommand GetSqlCommand(string sprocname)
         {
