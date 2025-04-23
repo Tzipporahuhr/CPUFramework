@@ -91,7 +91,7 @@ namespace CPUFramework
             {   msg = msg.Replace("\"", "'");
                 int pos = msg.IndexOf(prefix) + prefix.Length;
                 msg = msg.Substring(pos);
-                pos = msg.IndexOf("'") ;
+                pos = msg.IndexOf("'") - 1;
                 if (pos == -1)
                 {
                     msg = origmsg;
@@ -107,7 +107,44 @@ namespace CPUFramework
             return msg;
         }
 
-       
+       // private static string ParseConstraintMsg(string msg)
+      //  {
+      //      string origmsg = msg;
+      //      string prefix = "ck_";
+      //      string msgend = " ";
+      //      if (msg.Contains(prefix)==false)
+      //      {
+      //          if (msg.Contains("u_"))
+      //          {
+      //              prefix = "u_";
+      //              msgend = "must be unique.";
+      //
+      //          }
+      //          else if (msg.Contains("f_"))
+      //          {
+      //              prefix = "f_";
+      //          }
+      //      }
+      //      if (msg.Contains(prefix))
+      //      {
+      //          msg = msg.Replace("\"", "'");
+      //          int pos = msg.IndexOf(prefix) + prefix.Length;
+      //          msg = msg.Substring(pos);
+      //          pos = msg.IndexOf("'");
+      //          if (pos == -1)
+      //          {
+      //              msg = origmsg;
+      //          }
+      //          else
+      //          {
+      //              msg = msg.Substring(0, pos);
+      //              msg = msg.Replace("_", "");
+      //              msg = msg + msgend;
+      //          }
+      //        
+      //      }
+      //      return msg;
+      // // }
 
         public static int GetFirstColumnFirstRowValue(string sql)
         {
@@ -135,7 +172,7 @@ namespace CPUFramework
         public static string GetSQL(SqlCommand cmd)
         {
             string val = "";
-#if DEBUG    
+#if Debug     
             StringBuilder sb= new StringBuilder();
            
             if (cmd.Connection!= null)
