@@ -61,37 +61,31 @@ namespace CPUFramework
         {
             GetDataTable(sqlstatment);
         }
+
         private static string ParseConstraintMsg(string msg)
         {
             string origmsg = msg;
-            string prefix = "c_";
+            string prefix = "ck_";
             string msgend = " ";
-            if (msg.Contains(prefix) == false)
+            if (msg.Contains(prefix)==false)
             {
                 if (msg.Contains("u_"))
                 {
                     prefix = "u_";
                     msgend = "must be unique.";
+
                 }
                 else if (msg.Contains("f_"))
                 {
                     prefix = "f_";
                 }
-                else if (msg.Contains("ck_"))
-                {
-                    prefix = "ck_";
-                }
-                else if (msg.Contains("fk_"))
-                {
-                    prefix = "fk_";
-                }
             }
-          
             if (msg.Contains(prefix))
-            {   msg = msg.Replace("\"", "'");
+            {
+                msg = msg.Replace("\"", "'");
                 int pos = msg.IndexOf(prefix) + prefix.Length;
                 msg = msg.Substring(pos);
-                pos = msg.IndexOf("'") - 1;
+                pos = msg.IndexOf("'");
                 if (pos == -1)
                 {
                     msg = origmsg;
@@ -99,52 +93,13 @@ namespace CPUFramework
                 else
                 {
                     msg = msg.Substring(0, pos);
-                    msg = msg.Replace("_", " ");
+                    msg = msg.Replace("_", "");
                     msg = msg + msgend;
                 }
-
+              
             }
             return msg;
         }
-
-       // private static string ParseConstraintMsg(string msg)
-      //  {
-      //      string origmsg = msg;
-      //      string prefix = "ck_";
-      //      string msgend = " ";
-      //      if (msg.Contains(prefix)==false)
-      //      {
-      //          if (msg.Contains("u_"))
-      //          {
-      //              prefix = "u_";
-      //              msgend = "must be unique.";
-      //
-      //          }
-      //          else if (msg.Contains("f_"))
-      //          {
-      //              prefix = "f_";
-      //          }
-      //      }
-      //      if (msg.Contains(prefix))
-      //      {
-      //          msg = msg.Replace("\"", "'");
-      //          int pos = msg.IndexOf(prefix) + prefix.Length;
-      //          msg = msg.Substring(pos);
-      //          pos = msg.IndexOf("'");
-      //          if (pos == -1)
-      //          {
-      //              msg = origmsg;
-      //          }
-      //          else
-      //          {
-      //              msg = msg.Substring(0, pos);
-      //              msg = msg.Replace("_", "");
-      //              msg = msg + msgend;
-      //          }
-      //        
-      //      }
-      //      return msg;
-      // // }
 
         public static int GetFirstColumnFirstRowValue(string sql)
         {
