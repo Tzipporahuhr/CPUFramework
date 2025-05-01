@@ -102,8 +102,22 @@ namespace CPUFramework
             return msg;
         }
 
-       
-      public static int GetFirstColumnFirstRowValue(string sql)
+        public static string GetFirstColumnFirstRowValueAsString(string sql)
+        {
+            string var = "";
+            DataTable dt = GetDataTable(sql);
+            if (dt.Rows.Count > 0 && dt.Columns.Count > 0)
+            {
+                if (dt.Rows[0][0] != DBNull.Value)
+                {
+                    var= dt.Rows[0][0].ToString();
+                }
+            }
+            return var;
+        }
+
+
+        public static int GetFirstColumnFirstRowValue(string sql)
       {
           int n = 0;
      
