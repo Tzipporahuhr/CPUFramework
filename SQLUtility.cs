@@ -119,6 +119,7 @@ namespace CPUFramework
                 }
                 else
                 {
+                    
                     msg = msg.Substring(0, pos);
                     msg = msg.Replace("_", " ");
                     msg = msg + msgend;
