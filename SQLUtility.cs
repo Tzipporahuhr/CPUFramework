@@ -99,10 +99,12 @@ namespace CPUFramework
         {
             DoExecuteSQL(cmd, false);
         }
-        public static void ExecuteSQL(string sqlstatment)
+        public static void ExecuteSQL(string sqlstatement)
         {
-            GetDataTable(sqlstatment);
+            SqlCommand cmd = new SqlCommand(sqlstatement);
+            DoExecuteSQL(cmd, false);
         }
+        // GetDataTable(sqlstatment);
 
         public static void SetParamValue(SqlCommand cmd, string paramname, object value)
         { try {
